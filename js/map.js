@@ -130,9 +130,9 @@ function mapCSV(data){
 // function to read csv data
 function geojasonplay(){
 	L.geoJSON(linejson).addTo(map)
-	L.geoJSON(pointjson).addTo(map)
+//	L.geoJSON(pointjson).addTo(map)
 	L.geoJSON(polygonjson).addTo(map)
-	
+	L.geoJSON(runroutejson).addTo(map)
 
 		
 	
