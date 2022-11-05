@@ -1,40 +1,47 @@
 <html>
-<head>
-	<title>Jinger</title>
-	<meta charset="utf-8" />
+    <head>
+        <title>Jinger</title>
+        <meta charset="utf-8" />
 
-	<!-- style sheets -->
-	<link rel="stylesheet" href="css/style.css">
+        <!-- library -->
+        <!-- style sheets -->
+        <link rel="stylesheet" href="css/style.css">
 
+        <!-- leaflet -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
-    <!-- leaflet -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+        <!-- jquery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-	<!-- jquery -->
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <!-- PapaParse-->
+        <script src="js/papaparse.min.js"></script>
 
-	<!-- PapaParse-->
-	<script src="js/papaparse.min.js"></script>
-</head>
-<body>
+        <!-- geojson-->
+        <script src="data/line.js"></script>
+        <script src="data/point.js"></script>
+        <script src="data/polygon.js"></script>
+    </head>
 
-	<div class="header">
-		Jinjer
-	</div>
-	<div class="sidebar">
-		My Sidebar
-	</div>
-	<div class="content">
-		<!--My Map-->
-        <div id="map"></div>
-	</div>
-	<div class="footer">
-		copyright 2022 #タケシパン
-	</div>
+    <body>
+        <div class="header">
+            Jinjer
+        </div>
+        <div class="sidebar">
+            My Sidebar
+        </div>
 
-	<!-- javascript -->
-	<script src="js/map.js"></script>
-	
-</body>
+        <div class="content">
+            <!--My Map-->
+            <div id="map"></div>
+        </div>
+
+        <div class="footer">
+            copyright 2022 #タケシパン
+        </div>
+
+        <!-- javascript -->
+        <script src="js/map.js"></script>
+        
+    </body>
 </html>

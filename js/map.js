@@ -14,6 +14,9 @@ $( document ).ready(function() {
 
 	// csv読み込み
 	readCSV(path);
+
+	//geojsonで遊ぶ
+	geojasonplay();
 });
 
 // create the map
@@ -25,6 +28,19 @@ function createMap(){
 	});
 
 	osm.addTo(map)
+
+	var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+    	maxZoom: 17,
+    	attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+    });
+    OpenTopoMap.addTo(map)
+
+	//Thunder forest
+	var DarkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+		subdomains: 'abcd',
+	});
+	DarkMatter.addTo(map)
 
 	//GoogleMap
 	var GoogleMap = L.tileLayer('https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}', {
@@ -40,7 +56,8 @@ function createMap(){
     //LayerControll
     var baseMaps = {
 		"OpenStreetMap": osm,
-//		"OpenToolMap": OpenTopoMap,
+		"DarkMatter": DarkMatter,
+		"OpenToolMap": OpenTopoMap,
 		"GoogleMap": GoogleMap
 	
 	};
@@ -92,7 +109,7 @@ function mapCSV(data){
 	// loop through each entry
 	data.data.forEach(function(item,index){
 		// create marker
-		let marker = L.marker([item.latitude,item.longitude]).bindPopup(item.title)
+		let marker = L.marker([item.latitude,item.longitude]).bindPopup(item.title + " : " +item.reference_url)
 
 		// add marker to featuregroup
 		markers.addLayer(marker)
@@ -104,6 +121,19 @@ function mapCSV(data){
 	// add featuregroup to map
 	markers.addTo(map)
 
+//	L.control.layers(baseMaps, markers).addTo(map);
+
 	// fit markers to map
 	map.fitBounds(markers.getBounds())
+}
+
+// function to read csv data
+function geojasonplay(){
+	L.geoJSON(linejson).addTo(map)
+	L.geoJSON(pointjson).addTo(map)
+	L.geoJSON(polygonjson).addTo(map)
+	
+
+		
+	
 }
