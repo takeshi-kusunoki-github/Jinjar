@@ -2,8 +2,7 @@
 let map;
 
 // path to csv data
-//let path = "data/dunitz.csv";
-let path = "data/Nico_Beer.csv";
+let path = "data/Jinjar.csv";
 
 let markers = L.featureGroup();
 
@@ -21,10 +20,37 @@ $( document ).ready(function() {
 function createMap(){
 	map = L.map('map').setView([0,0],3);
 
-	L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-	}).addTo(map);
+	});
+
+	osm.addTo(map)
+
+	//GoogleMap
+	var GoogleMap = L.tileLayer('https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}', {
+		attribution: "<a href='https://developers.google.com/maps/documentation' target='_blank'>Google Map</a>"
+	});
+
+	GoogleMap.addTo(map)
+
+	
+//	osm.addTo(map)
+//GoogleMap.addTo(map);
+
+    //LayerControll
+    var baseMaps = {
+		"OpenStreetMap": osm,
+//		"OpenToolMap": OpenTopoMap,
+		"GoogleMap": GoogleMap
+	
+	};
+
+	L.control.layers(baseMaps).addTo(map);
+
 }
+
+
+
 
 // function to read csv data
 function readCSV(){
